@@ -29,45 +29,47 @@ const getItems = () => {
 const getListOfAgesOfUsersWith = (item) => {
     const dataAccessMethod = () => {
         // console.log("item received is " + item);
-        //Based on item value check items from itemsOfUserByUsername containing that item
-        //Example for "tv" find all the names who have tv in the array
-
-        //Get all the items from itemsOfUserByUsername and iterate over the properties
-        //Get the value of each property which essentially the array and check if item is present in the array
-        //If yes then push the key (name) to a new array
-
-        const nameArray = [];
-        const returnObject = {};
-        //Checking if item is undefined and returning blank object in that case
-        if (!item) {
-            return returnObject;
+        /*
+         * Find item value in itemsOfUserByUsername.
+         * Iterate items over itemsOfUserByUsername and get value.
+         * If item exists push the key (name) to a new array
+         */
+        const userNames = [];
+        const resultObj = {};
+        /*
+         * Set to default if no item.
+         */
+        if(!item) {
+            return resultObj;
         }
-        const allUsersWithItems = db.itemsOfUserByUsername;
-        for (const name in allUsersWithItems) {
-            if (allUsersWithItems.hasOwnProperty(name)
-                && allUsersWithItems[name].includes(item)) {
-                nameArray.push(name);
+        const allUsers = db.itemsOfUserByUsername;
+        for(const name in allUsers) {
+            if(allUsers.hasOwnProperty(name)
+                && allUsers[name].includes(item)) {
+                userNames.push(name);
             }
         }
-        // console.log("users with item " + nameArray);
-        //Iterate nameArray and create a object (map) of ages using userById object
-        const userInfoArray = _.map(db.usersById, userInfo => userInfo);
-        nameArray.forEach(name => {
-            // console.log("Name in nameArray " + name);
-            userInfoArray.forEach(userInfo => {
-                //Check if the age key is present in the return object. if yes then increment the count by 1
-                //If no then insert the age key to the object with initial count as 1
-                if (userInfo.username === name) {
-                    if (returnObject[userInfo.age]) {
-                        returnObject[userInfo.age] = returnObject[userInfo.age] + 1;
-                    } else {
-                        returnObject[userInfo.age] = 1;
+
+        // console.log("users with item " + userNames);
+        /*
+         * Loop through userNames and get userInfo
+         */
+        const userInfo = _.map(db.usersById, userInfo => userInfo);
+
+        userNames.forEach(name => {
+            userInfo.forEach(user => {
+                // If key exists increment the count else set to 1
+                if(user.username === name) {
+                    if(resultObj[user.age]) {
+                        resultObj[user.age] += 1;
+                    } else{
+                        resultObj[user.age] = 1;
                     }
                 }
             })
         })
 
-        return returnObject;
+        return resultObj;
     }
     return mockDBCall(dataAccessMethod);
 }
