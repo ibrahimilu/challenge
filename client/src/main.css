@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+  text-align: center;
+  margin: 60px;
+  padding: 20px 60px;
+  border: 6px solid rgba(0,0,0,0.7);
+  border-radius: 4px;
+}
+
+.container {
+  text-align: left;
+}
+
+.user-age-table {
+  margin-top: 60px;
+}
+
+h1, h2 {
+  font-size: '2rem';
+}

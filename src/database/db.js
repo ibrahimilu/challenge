@@ -44,5 +44,9 @@ module.exports = {
         Tina: [
             'tv'
         ]
+    },
+
+    allItems: {
+        items: ['carrot', 'apple', 'grapes', 'cake', 'crackers', 'chips', 'tv', 'ham', 'beef']
     }
 }
